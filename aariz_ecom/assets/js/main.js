@@ -572,7 +572,7 @@ function user_login() {
                     $(".login_msg p").html("Please enter valid login details");
                 }
                 if(result == "right"){
-                    window.location.href = 'index.php';
+                    window.location.href = window.location.href;
                 }
                 // alert(result);
             }
@@ -590,12 +590,17 @@ function user_login() {
 /*-----------------------------------------------
     23 Add to cart
 -------------------------------------------------*/
-function manage_cart(pid,type) {
-    if(type == 'update'){
-        var qty = $("#"+pid+"-qty").val();
+function manage_cart(pid,type,quty) {
+    if(quty == null){
+        if(type == 'update'){
+            var qty = $("#"+pid+"-qty").val();
+        }else{
+            var qty = jQuery("#qty").val();
+        }
     }else{
-        var qty = jQuery("#qty").val();
+        var qty = quty;
     }
+    
     
     jQuery.ajax({
         url:'manage_cart.php',
@@ -603,7 +608,7 @@ function manage_cart(pid,type) {
         data:'pid='+pid+'&qty='+qty+'&type='+type,
         success:function (result) {
             if(type == 'update' || type == 'remove'){
-                window.location.href = 'cart.php';
+                location.reload();
             }else{
                 $('.htc__qua').html(result);
             }

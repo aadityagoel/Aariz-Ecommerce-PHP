@@ -136,14 +136,25 @@
                                     <div class="header__search search search__open">
                                         <a href="#"><i class="icon-magnifier icons"></i></a>
                                     </div>
-                                    <div class="header__account">
-                                        <?php if(isset($_SESSION['USER_LOGIN'])){
-                                            echo '<a href="logout.php">Logout</a>';
-                                        }else{
-                                            echo '<a href="login.php">Login/Register</a>';
-                                        }?>
-                                        
-                                    </div>
+                                    
+                                    <?php if(isset($_SESSION['USER_LOGIN'])){?>
+                                        <div class="header__account">
+                                            <ul class="main__menu">
+                                                <li class="drop" style="text-transform: uppercase; font-family: 'Poppins', sans-serif; margin:0;">
+                                                    <i class="icon-user icons"></i>
+                                                    <ul class="dropdown">
+                                                        <li><a href="#"><?php echo ($_SESSION['USER_NAME']) ?></a></li>
+                                                        <li><a href="orders.php">My Order</a></li>
+                                                        <li><a href="logout.php">Logout</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    <?php }else{?>
+                                        <div class="header__account">
+                                            <a href="login.php">Login/Register</a>
+                                        </div>
+                                    <?php } ?>   
                                     <div class="htc__shopping__cart">
                                         <a class="cart__menu" href="cart.php"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct ?></span></a>
@@ -231,3 +242,6 @@
             <!-- End Cart Panel -->
         </div>
         <!-- End Offset Wrapper -->
+
+
+        

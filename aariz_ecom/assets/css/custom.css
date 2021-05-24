@@ -14,3 +14,49 @@
   color: red;
 }
 
+.accordion__hide{
+  background: #f4f4f4;
+  height: 65px;
+  line-height: 65px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+.accordion__hide.active:before {
+  content: "\f273";
+}
+.accordion__hide:before{
+  content: "\f278";
+  font-family: 'Material-Design-Iconic-Font';
+  display: inline-block;
+  padding-right: 10px;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+
+.dark-btn input[type = submit]:hover{
+  background: #c43b68;
+}
+.dark-btn input[type = submit]{
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  background: #212121;
+  color: #ffffff;
+  font-family: "Poppins";
+  padding: 0 45px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out 0s;
+}

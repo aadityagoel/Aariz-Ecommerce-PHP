@@ -2880,9 +2880,9 @@ a.shipping-calculator-button:hover{
     border-bottom: 1px solid #c1c1c1;
     border-right: 1px solid #c1c1c1;
     color: #000;
-    font-family: Old Standard TT;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 15px 10px;
     text-align: center;
 }
@@ -3294,10 +3294,10 @@ ul.htc__instagram__posts.owl-carousel li img {
     font-weight: 500;
     color: #000;
 }
-.accordion__body .checkout-method__login .single-input label:before{
+.accordion__body .checkout-method__login .single-input label:after{
     content: "*";
     padding-right: 15px;
-    color: #c2a476;
+    color: rgb(255, 0, 0);
 }
 .accordion__body .checkout-method__login .single-input input{
     height: 32px;
@@ -3389,7 +3389,7 @@ ul.htc__instagram__posts.owl-carousel li img {
 }
 .shipmethod .single-input label{
     font-family: "Poppins";
-    color: #3333;
+    color: #000;
     font-weight: 500;
 }
 .paymentinfo .single-method a i.zmdi{

@@ -1,5 +1,16 @@
 <!--head -->
-<?php require('header.php') ?>
+<?php require('header.php');
+
+if(isset($_SESSION['USER_LOGIN']))
+{
+    ?>
+    <script>
+        window.location.href='index.php';
+    </script>
+    <?php
+}
+
+?>
 <!-- head -->
 
 
