@@ -1,7 +1,7 @@
 <!--head -->
 <?php require('header.php');
 
-if(isset($_SESSION['USER_LOGIN']))
+if(isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] =='yes' )
 {
     ?>
     <script>

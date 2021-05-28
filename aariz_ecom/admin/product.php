@@ -70,7 +70,7 @@
                            <th>Category </th>
                            <th>Product Name</th>
                            <th>MRP</th>
-                           <th>Price</th>
+                           <th>Discounted Price</th>
                            <th>Quantity</th>
                            <th>Image</th>
                            <th>Added On</th>
@@ -88,8 +88,8 @@
                            <td><?php echo $row['id'] ?></td>
                            <td><?php echo $row['categories']; ?></td>
                            <td><?php echo $row['name']; ?></td>
-                           <td><?php echo $row['mrp']; ?></td>
-                           <td><?php echo $row['price']; ?></td>
+                           <td>&#8377;<?php echo $row['mrp']; ?></td>
+                           <td>&#8377;<?php echo $row['price']; ?></td>
                            <td><?php echo $row['qty']; ?></td>
                            <td><img src="<?php echo PRODUCT_IMAGE_SITE_PATH.$row['image']; ?>" style="height: 30px; width: 30px;"> </td>
                            <td><?php echo $row['added_on']; ?></td>

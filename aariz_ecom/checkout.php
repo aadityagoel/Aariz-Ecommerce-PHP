@@ -42,10 +42,10 @@ if(isset($_POST['submit'])){
     
     $total_amount = $cart_total;
     $payment_status = 'pending';
-    if($payment_type == 'cod'){
-        $payment_status = 'success';
-    }
-    $order_status = 'pending';
+    // if($payment_type == 'payu'){
+    //     $payment_status = 'success';
+    // }
+    $order_status = '1';
     // $added_on = date('Y-m-d h:i:s');
 
     mysqli_query($con, "insert into orders ( user_id, ship_user_name, ship_address, city, state,  pincode, phone, email, payment_type, total_amount, payment_status, order_status) values('$userid','$name','$address','$city','$state','$pincode','$phone','$email','$payment_type','$total_amount','$payment_status','$order_status')");

@@ -5,7 +5,7 @@ if ($_GET['order_id']=='' || $_GET['order_id']<=0) {
 
     ?>
         <script>
-            window.location.href='index.php';
+            window.location.href='order.php';
         </script>
     <?php
     }else{
@@ -25,6 +25,8 @@ if ($_GET['order_id']=='' || $_GET['order_id']<=0) {
                         <nav class="bradcaump-inner">
                             <a class="breadcrumb-item" href="index.php">Home</a>
                             <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
+                            <a class="breadcrumb-item" href="orders.php">Orders</a>
+                            <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
                             <span class="breadcrumb-item active">Orders Detail</span>
                         </nav>
                     </div>
@@ -35,25 +37,6 @@ if ($_GET['order_id']=='' || $_GET['order_id']<=0) {
 </div>
 <!-- End Bradcaump area -->
 
-
-<!-- main -->
-<?php 
-if(!isset($_SESSION['USER_ID'])){
-    ?>
-<section class="htc__category__area ptb--100">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="section__title--2 text-center">
-                    <h2 class="title__line">Sorry!!!</h2>
-                    <p>You have not placed any order yet</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- main -->
-<?php }?>
 <!-- wishlist-area start -->
 <div class="wishlist-area ptb--100 bg__white">
     <div class="container">
@@ -84,21 +67,21 @@ if(!isset($_SESSION['USER_ID'])){
                                         while($row=mysqli_fetch_assoc($res)){
                                         $total = $total + $row['total_price'];
                                     ?>
-                                    <tr onclick="getOrderDetail(<?php echo $row['order_id'] ?>)">
+                                    <tr>
                                         
                                         <td class="product-thumbnail"><a href="product.php?id=<?php echo $row['product_id']; ?>"><img src="<?php echo PRODUCT_IMAGE_SITE_PATH.$row['image'] ?>" alt="" /></a></td>
                                         
                                         <td class="product-name"><a href="product.php?id=<?php echo $row['product_id']; ?>"><?php echo $row['name'] ?></a></td>
-                                        <td class="product-name"><?php echo $row['price'] ?></td>
+                                        <td class="product-name">&#8377;<?php echo $row['price'] ?></td>
                                         <td class="product-name"><?php echo $row['qty'] ?></td>
-                                        <td class="product-name"><?php echo $row['total_price'] ?></td>
+                                        <td class="product-name">&#8377;<?php echo $row['total_price'] ?></td>
                                         
                                     </tr>
                                     <?php } ?>
                                     <tr>
                                         <td colspan="3"></td>
                                         <td class="product-name">Total</td>
-                                        <td class="product-name"><?php echo $total ?></td>
+                                        <td class="product-name">&#8377;<?php echo $total ?></td>
                                     </tr>
                                 </tbody>
                                 
