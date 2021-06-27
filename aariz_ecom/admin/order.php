@@ -41,8 +41,10 @@
                            <th>Ship To (City-State)</th>
                            <!-- <th>Base Price</th> -->
                            <th>Total Amount</th>
-                           <th>Ordered On</th>
+                          
                            <th>Ordered Status</th>
+                           <th>Payment Status</th>
+                           <th>Ordered On</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -58,9 +60,10 @@
                            <td><?php echo $row['city']; ?> - <?php echo $row['state']; ?></td>
                            <!-- <td>0</td> -->
                            <td>&#8377;<?php echo $row['total_amount']; ?></td>
-                           <td><?php echo $row['added_on']; ?></td>
-                           <td><?php echo $row['status_name']; ?></td>
                            
+                           <td><?php echo $row['status_name']; ?></td>
+                           <td><?php echo $row['payment_status']; ?></td>
+                           <td><?php echo $row['added_on']; ?></td>
                            <td>
                               <?php 
                               echo "<button type='button' class='btn btn-info btn-sm'><a href='order_detail.php?order_id=".$row['order_id']."' style='color: white;'>Info</a></button>";

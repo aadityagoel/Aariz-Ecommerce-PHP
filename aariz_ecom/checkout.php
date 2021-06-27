@@ -30,6 +30,8 @@ foreach($_SESSION['cart'] as $key=>$val){
 
 if(isset($_POST['submit'])){
     // prx($_POST);
+
+    $order_id = rand(10000,99999999);
     $userid = $_SESSION['USER_ID'];
     $name = get_safe_value($con,$_POST['ship_user_name']);
     $address = get_safe_value($con,$_POST['ship_address']);
@@ -46,12 +48,17 @@ if(isset($_POST['submit'])){
     //     $payment_status = 'success';
     // }
     $order_status = '1';
-    // $added_on = date('Y-m-d h:i:s');
+    $added_on = date('Y-m-d h:i:s');
+    
+   
+    
+    mysqli_query($con, "insert into orders ( order_id, user_id, ship_user_name, ship_address, city, state,  pincode, phone, email, payment_type, total_amount, payment_status, order_status, added_on) values('$order_id','$userid','$name','$address','$city','$state','$pincode','$phone','$email','$payment_type','$total_amount','$payment_status','$order_status','$added_on')");
 
-    mysqli_query($con, "insert into orders ( user_id, ship_user_name, ship_address, city, state,  pincode, phone, email, payment_type, total_amount, payment_status, order_status) values('$userid','$name','$address','$city','$state','$pincode','$phone','$email','$payment_type','$total_amount','$payment_status','$order_status')");
+    // echo '<pre>';
+    // print_r();
+    // die();
 
-
-    $order_id = mysqli_insert_id($con);
+    // $order_id = mysqli_insert_id($con);
     
     foreach($_SESSION['cart'] as $key=>$val){
         $ProductArr = get_product($con, '', '',$key);
@@ -69,11 +76,20 @@ if(isset($_POST['submit'])){
         mysqli_query($con, "insert into order_detail ( order_id, product_id, qty, price, total_price) values('$order_id','$key','$qty','$price','$subtotal')");
     }
     unset($_SESSION['cart']);
+
+    if($payment_type == 'paytm'){
+        $formHtml ='<form method="post" id="paytmform" name="paytmform" action="paytm/pgRedirect.php"><input type="hidden" id="ORDER_ID" name="ORDER_ID" value="'.$order_id.'"><input type="hidden" id="CUST_ID" name="CUST_ID" value="'.$userid.'"><input type="hidden" id="INDUSTRY_TYPE_ID" name="INDUSTRY_TYPE_ID" value="Retail"><input type="hidden" id="CHANNEL_ID" name="CHANNEL_ID" value="WEB"><input type="hidden" id="TXN_AMOUNT" name="TXN_AMOUNT" value="'.$total_amount.'"><input type="hidden" id="TXN_MOBILE" name="TXN_MOBILE" value="'.$mobile.'"><input type="hidden" id="TXN_EMAIL" name="TXN_EMAIL" value="'.$email.'"><input type="submit" style="display:none;"></form>';
+        echo $formHtml;
+        echo '<script>document.getElementById("paytmform").submit();</script>';
+    }else{
         ?>
         <script>
             window.location.href='thank_you.php';
         </script>
         <?php
+    }
+
+        
 }
 
 ?>
@@ -247,8 +263,8 @@ if(isset($_POST['submit'])){
                                     <div class="shipmethod">
                                         <div class="single-input">
                                             <p>
-                                                <input type="radio" name="payment_type" id="payu" value="payu" required>
-                                                <label for="payu">PayU</label>
+                                                <input type="radio" name="payment_type" id="paytm" value="paytm" required>
+                                                <label for="paytm">Online Payment</label>
                                             </p>
                                             <p>UPI / Online Transaction / Bank Transfer</p>
                                         </div>

@@ -232,7 +232,7 @@
 <!-- /.content-wrapper -->
 
 <!-- footer -->
-<?php require('footer.inc.php') ?>
+<!--?php require('footer.inc.php') ?-->
 <!-- footer -->
 
 <!-- scripts -->

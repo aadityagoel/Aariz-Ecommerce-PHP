@@ -36,7 +36,7 @@ if(!isset($_SESSION['USER_LOGIN'])){
 <?php 
 $userid = $_SESSION['USER_ID'];
 // echo "select orders.*, order_status.* from orders,order_status  where orders.user_id = '$userid' and orders.order_status = order_status.status_id";
-$sql = "select orders.*, order_status.* from orders,order_status  where orders.user_id = '$userid' and orders.order_status = order_status.status_id";
+$sql = "select orders.*, order_status.* from orders,order_status  where orders.user_id = '$userid' and orders.order_status = order_status.status_id ORDER BY orders.added_on DESC";
 $result = mysqli_query($con, $sql);
 // echo pr(mysqli_fetch_assoc($result));
 if(mysqli_num_rows($result) == 0){
@@ -69,7 +69,7 @@ if(mysqli_num_rows($result) == 0){
                                         
                                         <th class="product-add-to-cart"> Address</th>
                                         <th class="product-price"> Price </th>
-                                        <th class="product-price"> Payment Type </th>
+                                        
                                         <th class="product-price"> Payment Status </th>
                                         <th class="product-price"> Order Date </th>
                                         <th class="product-stock-stauts"> Order Status </th>
@@ -95,7 +95,7 @@ if(mysqli_num_rows($result) == 0){
                                             
                                         </td>
                                         <td class="product-price">&#8377;<?php echo $row['total_amount'] ?></td>
-                                        <td class="product-price"><?php echo $row['payment_type'] ?></td>
+                                        
                                         <td class="product-price"><?php echo $row['payment_status'] ?></td>
                                         <td class="product-price"><?php echo $row['added_on'] ?></td>
                                         <td class="product-stock-status"><?php echo $row['status_name'] ?></td>
