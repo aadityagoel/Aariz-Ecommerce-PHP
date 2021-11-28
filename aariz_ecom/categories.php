@@ -1,6 +1,32 @@
 <!--head -->
 <?php 
     require('header.php');
+
+    //sorting
+    $price_low_high_selected = "";
+    $price_high_low_selected = "";
+    $new_selected = "";
+    $old_selected = "";
+    if(isset($_GET['sort'])){
+        $sort=mysqli_real_escape_string($con, $_GET['sort']);
+        if($sort=="price_low_high"){
+            $sort_order = " order by product.price asc ";
+            $price_low_high_selected = "selected";
+        }elseif($sort=="price_high_low"){
+            $sort_order = " order by product.price desc ";
+            $price_high_low_selected = "selected";
+        }elseif($sort=="new"){
+            $sort_order = " order by product.id desc ";
+            $new_selected = "selected";
+        }elseif($sort=="old"){
+            $sort_order = " order by product.id asc ";
+            $old_selected = "selected";
+        }
+    }else{
+        $sort_order = ''; 
+    }
+    //sorting
+
     if ($_GET['id']=='' || $_GET['id']<=0) {
 
         ?>
@@ -14,12 +40,12 @@
     }else{
         $cat_id = mysqli_real_escape_string($con, $_GET['id']);
     }
-    $get_product = get_product($con, '', $cat_id);
+    $get_product = get_product($con, '', $cat_id, '', '', $sort_order);
 ?>
 <!-- head -->
 
 <!-- Start Bradcaump area -->
-<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(assets/images/bg/banner_bg.png) no-repeat scroll center center / cover ;">
+<div class="ht__bradcaump__area">
     <div class="ht__bradcaump__wrap">
         <div class="container">
             <div class="row">
@@ -46,17 +72,12 @@
                 <div class="htc__product__rightidebar">
                     <div class="htc__grid__top">
                         <div class="htc__select__option">
-                            <select class="ht__select">
-                                <option>Default softing</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by average rating</option>
-                                <option>Sort by newness</option>
-                            </select>
-                            <select class="ht__select">
-                                <option>Show by</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by average rating</option>
-                                <option>Sort by newness</option>
+                            <select class="ht__select" onchange="sort_product_drop('<?php echo $cat_id ?>','<?php echo SITE_PATH ?>')" id="sort_product_id">
+                                <option value="">Default softing</option>
+                                <option value="price_low_high" <?php echo $price_low_high_selected ?>>Sort by price Low to High</option>
+                                <option value="price_high_low" <?php echo $price_high_low_selected ?>>Sort by price High to Low</option>
+                                <option value="new" <?php echo $new_selected ?>>Sort by new first</option>
+                                <option value="old" <?php echo $old_selected ?>>Sort by old first</option>
                             </select>
                         </div>
                         <!-- <div class="ht__pro__qun">

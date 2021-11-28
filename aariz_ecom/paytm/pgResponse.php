@@ -25,18 +25,20 @@ $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecks
 
 
 if($isValidChecksum == "TRUE") {
+	$order_id = $_POST["ORDERID"];
+	$txn_id = $_POST["TXNID"];
+	$payment_mode = $_POST["PAYMENTMODE"];
+	$txn_date = $_POST["TXNDATE"];
+	$bank_txn_id = $_POST["BANKTXNID"];
+	$bank_name = $_POST["BANKNAME"];
+	$checksum_hash = $_POST["CHECKSUMHASH"];
 	echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
 		echo "<b>Transaction status is success</b>" . "<br/>";
-		$order_id = $_POST["ORDERID"];
+		
+
 		$payment_status = 'success';
-		$txn_id = $_POST["TXNID"];
-		$payment_mode = $_POST["PAYMENTMODE"];
-		$txn_date = $_POST["TXNDATE"];
 		$txn_status = $_POST["RESPMSG"];
-		$bank_txn_id = $_POST["BANKTXNID"];
-		$bank_name = $_POST["BANKNAME"];
-		$checksum_hash = $_POST["CHECKSUMHASH"];
 		
 		mysqli_query($con, "update orders set payment_status='$payment_status', txn_id='$txn_id', payment_mode='$payment_mode', txn_date='$txn_date', txn_status='$txn_status', bank_txn_id='$bank_txn_id', bank_name='$bank_name', checksum_hash='$checksum_hash' where order_id = '$order_id'");
 
@@ -46,6 +48,14 @@ if($isValidChecksum == "TRUE") {
 	}
 	else {
 		echo "<b>Transaction status is failure</b>" . "<br/>";
+		
+		$payment_status = 'failure';
+		$txn_status = $_POST["RESPMSG"];
+		
+		mysqli_query($con, "update orders set payment_status='$payment_status', txn_id='$txn_id', payment_mode='$payment_mode', txn_date='$txn_date', txn_status='$txn_status', bank_txn_id='$bank_txn_id', bank_name='$bank_name', checksum_hash='$checksum_hash' where order_id = '$order_id'");
+
+		header('Location: ../payment_failed.php');
+
 	}
 
 	if (isset($_POST) && count($_POST)>0 )
@@ -60,6 +70,7 @@ if($isValidChecksum == "TRUE") {
 else {
 	echo "<b>Checksum mismatched.</b>";
 	//Process transaction as suspicious.
+	header('Location: ../404.php');
 }
 
 ?>

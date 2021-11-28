@@ -103,32 +103,7 @@
                                                 <?php
                                             }
                                             ?>
-                                            <!-- <li class="drop"><a href="#">Shop</a>
-                                                <ul class="dropdown mega_dropdown">
-                                                    <li><a class="mega__title" href="product-grid.html">Shop Pages</a>
-                                                        <ul class="mega__item">
-                                                            <li><a href="product-grid.html">Product Grid</a></li>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="checkout.html">checkout</a></li>
-                                                            <li><a href="wishlist.html">wishlist</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a class="mega__title" href="product-grid.html">Variable Product</a>
-                                                        <ul class="mega__item">
-                                                            <li><a href="#">Category</a></li>
-                                                            <li><a href="#">My Account</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="drop"><a href="#">Shop</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="product-grid.html">Product Grid</a></li>
-                                                </ul>
-                                            </li> -->
+                                            
                                             <li><a href="contact.php">contact</a></li>
                                         </ul>
                                     </nav>
@@ -181,8 +156,8 @@
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="search__inner">
-                                <form action="#" method="get">
-                                    <input placeholder="Search here... " type="text">
+                                <form action="search.php" method="get">
+                                    <input placeholder="Search here... " type="text" name="str">
                                     <button type="submit"></button>
                                 </form>
                                 <div class="search__close__btn">
